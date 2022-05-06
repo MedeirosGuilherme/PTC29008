@@ -10,14 +10,16 @@ except:
   sys.exit(0)
 
 try:
-  p = Serial(porta, 9600, timeout=10)
+  p = Serial(porta, 9600, timeout=5)
 except Exception as e:
   print('Não conseguiu acessar a porta serial', e)
   sys.exit(0)
 
-msg = 'um teste ...\r\n'
+f = open("file.txt","rb")
+msg = f.read()
+print(msg)
 
-n = p.write(msg.encode('ascii'))
+n = p.write(msg)
 print('Enviou %d bytes' % n)
 
 inp = input('Digite ENTER para terminar:')
